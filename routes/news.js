@@ -11,7 +11,8 @@ router.get('/:pagina', function(req, res, next) {
     let minNew = (pagina-1)*5;
     connection.query("SELECT * FROM news LIMIT "+ minNew +",5", (error, result) => {
         connection.query('SELECT COUNT (*) as numero FROM news',(error2, result2) => {
-            console.log(error)
+            console.log(error);
+            console.log(error2);
             res.render('news/news.ejs', {
             news: result,
             numero_noticias: result2
