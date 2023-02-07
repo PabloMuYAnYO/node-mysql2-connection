@@ -30,15 +30,17 @@
                         </tr>
                     <% } %>
                 </table>
-                <% for(let i = 0; i < numero_noticias[0].numero; i+=5){  %>
-                    <form action="http://localhost:3000/news/<%= (i/5)+1 %>" method="get">
-                        <button>
-                            <%= (i/5)+1 %>
-                        </button>
-                    </form>
-                <% } %>
+                <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                    <% for(let i = 0; i < numero_noticias[0].numero; i+=5){  %>
+                        <form action="http://localhost:3000/news/<%= (i/5)+1 %>" method="get">
+                            <button class="btn btn-primary m-2">
+                                <%= (i/5)+1 %>
+                            </button>
+                        </form>
+                    <% } %>
+                </div>
                     <!-- <%= numero_noticias[0].numero %> -->
-                    <!-- i = 0 boton = 1
+                    <!-- i = 0 botón = 1
                         i= 5 boton = 2
                         i= 10 boton = 3
                         i = 15 boton = 4
