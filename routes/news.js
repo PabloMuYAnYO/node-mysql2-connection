@@ -4,12 +4,19 @@ const dbConnection = require('../config/dbConnection')
 const connection = dbConnection()
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    connection.query("SELECT * FROM news", (error, result) => {
-        console.log(error)
-        res.render('news/news.ejs', {
-        news: result
-        })
+router.get('/:pagina', function(req, res, next) {
+    let pagina = req.params.pagina;
+    console.log(pagina);
+    // let maxNew = 5;
+    let minNew = (pagina-1)*5;
+    connection.query("SELECT * FROM news LIMIT "+ minNew +",5", (error, result) => {
+        connection.query('SELECT COUNT (*) as numero FROM news',(error2, result2) => {
+            console.log(error)
+            res.render('news/news.ejs', {
+            news: result,
+            numero_noticias: result2
+            })
+        } )
     })
 });
 
@@ -23,7 +30,7 @@ router.post('/', function(req, res, next) {
         title,
         news
     }, (error, result) => {
-        res.redirect('/news')
+        res.redirect('/news/1')
     })
 });
 

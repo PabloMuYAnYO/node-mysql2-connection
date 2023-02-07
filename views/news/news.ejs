@@ -10,7 +10,7 @@
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <a href="/" class="navbar-brand mx-auto">Home</a>
-        <a href="/news" class="navbar-brand mx-auto">News</a>
+        <a href="/news/1" class="navbar-brand mx-auto">News</a>
         <a href="/about" class="navbar-brand mx-auto">About</a>
     </nav>
     <div class="container">
@@ -30,6 +30,20 @@
                         </tr>
                     <% } %>
                 </table>
+                <% for(let i = 0; i < numero_noticias[0].numero; i+=5){  %>
+                    <form action="http://localhost:3000/news/<%= (i/5)+1 %>" method="get">
+                        <button>
+                            <%= (i/5)+1 %>
+                        </button>
+                    </form>
+                <% } %>
+                    <!-- <%= numero_noticias[0].numero %> -->
+                    <!-- i = 0 boton = 1
+                        i= 5 boton = 2
+                        i= 10 boton = 3
+                        i = 15 boton = 4
+
+                        /5 + 1 = numero noticia -->
             </div>
             <div class="col-md-6 mt-4 card">
                 <form class="card-body" action="/news" method="post">
